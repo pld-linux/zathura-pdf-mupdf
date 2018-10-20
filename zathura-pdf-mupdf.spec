@@ -1,49 +1,58 @@
 Summary:	mupdf based PDF plugin for zathura
+Summary(pl.UTF-8):	Wtyczka PDF dla zathury oparta na silniku mupdf
 Name:		zathura-pdf-mupdf
-Version:	0.2.7
+Version:	0.3.4
 Release:	1
 License:	BSD-like
 Group:		Applications/Publishing
-Source0:	https://pwmt.org/projects/zathura/plugins/download/%{name}-%{version}.tar.gz
-# Source0-md5:	b89b45289c8ec77854de4afc149cd1a4
+Source0:	https://pwmt.org/projects/zathura-pdf-mupdf/download/%{name}-%{version}.tar.xz
+# Source0-md5:	60d5abdf5e6f0f869db6422e9c99fdc0
 URL:		https://pwmt.org/projects/zathura-pdf-mupdf/
+BuildRequires:	cairo-devel
+# C11
+BuildRequires:	gcc >= 6:4.7
 BuildRequires:	girara-devel >= 0.2.3
+BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk+3-devel >= 3.2
-BuildRequires:	jbig2dec-devel
-BuildRequires:	libjpeg-devel
-BuildRequires:	openjpeg2-devel
+BuildRequires:	meson >= 0.43
+BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	mujs-devel
-BuildRequires:	mupdf-devel
-BuildRequires:	openssl-devel
-BuildRequires:	zathura-devel >= 0.2.0
-Requires:	zathura >= 0.2.0
+BuildRequires:	mupdf-devel >= 1.14
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
+BuildRequires:	zathura-devel >= 0.3.9
+Requires:	girara >= 0.2.3
+Requires:	mupdf >= 1.14
+Requires:	zathura >= 0.3.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The zathura-pdf-mupdf plugin adds PDF support to zathura by using
 the mupdf rendering engine.
 
+%description -l pl.UTF-8
+Wtyczka zathura-pdf-mupdf dodaje do zathury obsługę PDF z
+wykorzystaniem silnika renderującego mupdf.
+
 %prep
 %setup -q
 
 %build
-CFLAGS="%{rpmcflags}" \
-LDFLAGS="%{rpmldflags}" \
-%{__make} VERBOSE=1
+%meson build
+
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	LIBDIR=%{_libdir}
+%meson_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS LICENSE
-%attr(755,root,root) %{_libdir}/zathura/pdf.so
-%{_desktopdir}/%{name}.desktop
+%doc AUTHORS LICENSE README
+%attr(755,root,root) %{_libdir}/zathura/libpdf-mupdf.so
+%{_datadir}/metainfo/org.pwmt.zathura-pdf-mupdf.metainfo.xml
+%{_desktopdir}/org.pwmt.zathura-pdf-mupdf.desktop
