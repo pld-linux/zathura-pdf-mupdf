@@ -15,20 +15,21 @@ BuildRequires:	girara-devel >= 0.2.3
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk+3-devel >= 3.2
 BuildRequires:	meson >= 0.43
+BuildRequires:	mupdf-devel >= 1.14
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
-BuildRequires:	mupdf-devel >= 1.14
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zathura-devel >= 0.3.9
+Requires(post,postun):	desktop-file-utils
 Requires:	girara >= 0.2.3
 Requires:	mupdf >= 1.14
 Requires:	zathura >= 0.3.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The zathura-pdf-mupdf plugin adds PDF support to zathura by using
-the mupdf rendering engine.
+The zathura-pdf-mupdf plugin adds PDF support to zathura by using the
+mupdf rendering engine.
 
 %description -l pl.UTF-8
 Wtyczka zathura-pdf-mupdf dodaje do zathury obsługę PDF z
@@ -49,6 +50,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_desktop_database_post
+
+%postun
+%update_desktop_database_postun
 
 %files
 %defattr(644,root,root,755)
