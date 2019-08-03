@@ -2,11 +2,12 @@ Summary:	mupdf based PDF plugin for zathura
 Summary(pl.UTF-8):	Wtyczka PDF dla zathury oparta na silniku mupdf
 Name:		zathura-pdf-mupdf
 Version:	0.3.4
-Release:	2
+Release:	3
 License:	BSD-like
 Group:		Applications/Publishing
 Source0:	https://pwmt.org/projects/zathura-pdf-mupdf/download/%{name}-%{version}.tar.xz
 # Source0-md5:	60d5abdf5e6f0f869db6422e9c99fdc0
+Patch0:		%{name}-1.16.patch
 URL:		https://pwmt.org/projects/zathura-pdf-mupdf/
 BuildRequires:	cairo-devel
 # C11
@@ -15,7 +16,7 @@ BuildRequires:	girara-devel >= 0.2.3
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk+3-devel >= 3.2
 BuildRequires:	meson >= 0.43
-BuildRequires:	mupdf-devel >= 1.14
+BuildRequires:	mupdf-devel >= 1.16
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
@@ -23,7 +24,7 @@ BuildRequires:	xz
 BuildRequires:	zathura-devel >= 0.3.9
 Requires(post,postun):	desktop-file-utils
 Requires:	girara >= 0.2.3
-Requires:	mupdf >= 1.14
+Requires:	mupdf >= 1.16
 Requires:	zathura >= 0.3.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,6 +38,7 @@ wykorzystaniem silnika renderującego mupdf.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %meson build
