@@ -23,7 +23,7 @@ BuildRequires:	xz
 BuildRequires:	zathura-devel >= 0.3.9
 Requires(post,postun):	desktop-file-utils
 Requires:	girara >= 0.2.3
-%requires_eq	mupdf
+%requires_eq_to	mupdf-libs mupdf-devel
 Requires:	zathura >= 0.3.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
