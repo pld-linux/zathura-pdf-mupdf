@@ -1,0 +1,11 @@
+--- zathura-pdf-mupdf-0.3.7/meson.build.orig	2021-07-14 18:55:03.293939600 +0200
++++ zathura-pdf-mupdf-0.3.7/meson.build	2021-07-15 20:24:42.663550814 +0200
+@@ -20,7 +20,7 @@
+ glib = dependency('glib-2.0')
+ cairo = dependency('cairo')
+ mupdf = cc.find_library('mupdf')
+-mupdfthird = cc.find_library('mupdf-third')
++mupdfthird = cc.find_library('mupdf-third', required: false)
+ 
+ build_dependencies = [
+   zathura,
