@@ -20,6 +20,7 @@ BuildRequires:	meson >= 0.43
 BuildRequires:	mupdf-devel >= 1.17
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zathura-devel >= 0.3.9
@@ -44,12 +45,12 @@ wykorzystaniem silnika renderującego mupdf.
 %build
 %meson build
 
-%meson_build -C build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%meson_install -C build
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
