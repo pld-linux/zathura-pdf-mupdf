@@ -1,12 +1,12 @@
 Summary:	mupdf based PDF plugin for zathura
 Summary(pl.UTF-8):	Wtyczka PDF dla zathury oparta na silniku mupdf
 Name:		zathura-pdf-mupdf
-Version:	0.3.7
-Release:	3
+Version:	0.4.0
+Release:	1
 License:	BSD-like
 Group:		Applications/Publishing
 Source0:	https://pwmt.org/projects/zathura-pdf-mupdf/download/%{name}-%{version}.tar.xz
-# Source0-md5:	ae8a22765e0c829264ec13a9d6e18e81
+# Source0-md5:	42065047e37c6caf7d8d1a8960fb3006
 Patch0:		mupdf_1.18.patch
 URL:		https://pwmt.org/projects/zathura-pdf-mupdf/
 BuildRequires:	cairo-devel
@@ -16,18 +16,18 @@ BuildRequires:	girara-devel >= 0.2.3
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk+3-devel >= 3.2
 BuildRequires:	gumbo-parser-devel
-BuildRequires:	meson >= 0.43
-BuildRequires:	mupdf-devel >= 1.17
+BuildRequires:	meson >= 0.56
+BuildRequires:	mupdf-devel >= 1.20.0
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-BuildRequires:	zathura-devel >= 0.3.9
+BuildRequires:	zathura-devel >= 0.5.2
 Requires(post,postun):	desktop-file-utils
 Requires:	girara >= 0.2.3
 %requires_eq_to	mupdf-libs mupdf-devel
-Requires:	zathura >= 0.3.9
+Requires:	zathura >= 0.5.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS LICENSE README
+%doc AUTHORS LICENSE README.md
 %attr(755,root,root) %{_libdir}/zathura/libpdf-mupdf.so
 %{_datadir}/metainfo/org.pwmt.zathura-pdf-mupdf.metainfo.xml
 %{_desktopdir}/org.pwmt.zathura-pdf-mupdf.desktop
