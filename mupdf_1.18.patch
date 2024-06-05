@@ -3,7 +3,7 @@
 @@ -20,7 +20,7 @@
  glib = dependency('glib-2.0')
  cairo = dependency('cairo')
- mupdf = dependency('mupdf', required: false)
+ mupdf = dependency('mupdf', required: false, version: '>=@0@.@1@'.format(mupdf_required_version_major, mupdf_required_version_minor))
 -mupdfthird = cc.find_library('mupdf-third')
 +mupdfthird = cc.find_library('mupdf-third', required: false)
  
