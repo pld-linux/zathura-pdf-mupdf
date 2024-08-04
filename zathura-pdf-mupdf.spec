@@ -1,3 +1,6 @@
+%define		_zathura_api_ver	%(pkg-config --variable=apiversion zathura)
+%define		_zathura_abi_ver	%(pkg-config --variable=abiversion zathura)
+
 Summary:	mupdf based PDF plugin for zathura
 Summary(pl.UTF-8):	Wtyczka PDF dla zathury oparta na silniku mupdf
 Name:		zathura-pdf-mupdf
@@ -28,6 +31,8 @@ Requires(post,postun):	desktop-file-utils
 Requires:	girara >= 0.2.3
 %requires_eq_to	mupdf-libs mupdf-devel
 Requires:	zathura >= 0.5.2
+Requires:	zathura(plugin-abi) = %_zathura_abi_ver
+Requires:	zathura(plugin-api) = %_zathura_api_ver
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
