@@ -1,11 +1,11 @@
---- zathura-pdf-mupdf-0.3.7/meson.build.orig	2021-07-14 18:55:03.293939600 +0200
-+++ zathura-pdf-mupdf-0.3.7/meson.build	2021-07-15 20:24:42.663550814 +0200
-@@ -20,7 +20,7 @@
- glib = dependency('glib-2.0')
- cairo = dependency('cairo')
- mupdf = dependency('mupdf', required: false, version: '>=@0@.@1@'.format(mupdf_required_version_major, mupdf_required_version_minor))
--mupdfthird = cc.find_library('mupdf-third')
-+mupdfthird = cc.find_library('mupdf-third', required: false)
+--- zathura-pdf-mupdf-0.4.6/meson.build.orig	2025-10-28 18:28:23.000000000 +0100
++++ zathura-pdf-mupdf-0.4.6/meson.build	2025-10-28 19:36:57.256525823 +0100
+@@ -35,7 +35,7 @@
+ if not mupdf.found()
+   # normal build of mupdf
+   mupdf = cc.find_library('mupdf', has_headers: ['mupdf/fitz/version.h', 'mupdf/fitz.h', 'mupdf/pdf.h'], required: true)
+-  mupdfthird = cc.find_library('mupdf-third')
++  mupdfthird = cc.find_library('mupdf-third', required: false)
+   version_check = '''
+ #include <mupdf/fitz/version.h>
  
- build_dependencies = [
-   zathura,
