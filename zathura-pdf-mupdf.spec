@@ -4,12 +4,12 @@
 Summary:	mupdf based PDF plugin for zathura
 Summary(pl.UTF-8):	Wtyczka PDF dla zathury oparta na silniku mupdf
 Name:		zathura-pdf-mupdf
-Version:	2026.05.10
-Release:	2
+Version:	2026.07.18
+Release:	1
 License:	BSD-like
 Group:		Applications/Publishing
 Source0:	https://pwmt.org/projects/zathura-pdf-mupdf/download/%{name}-%{version}.tar.xz
-# Source0-md5:	e5a29963de754983edee6913faf821ec
+# Source0-md5:	2775e326f660470632b11f195fb330ee
 Patch0:		mupdf_1.18.patch
 URL:		https://pwmt.org/projects/zathura-pdf-mupdf/
 BuildRequires:	cairo-devel
@@ -26,11 +26,11 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-BuildRequires:	zathura-devel >= 2026.01.30
+BuildRequires:	zathura-devel >= 2026.07.18
 Requires(post,postun):	desktop-file-utils
 Requires:	girara >= 2026.02.03
 %requires_eq_to	mupdf-libs mupdf-devel
-Requires:	zathura >= 2026.01.30
+Requires:	zathura >= 2026.07.18
 Requires:	zathura(plugin-abi) = %_zathura_abi_ver
 Requires:	zathura(plugin-api) = %_zathura_api_ver
 Conflicts:	zathura-pdf-poppler
